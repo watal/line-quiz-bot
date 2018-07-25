@@ -73,8 +73,9 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                 // 要素を選ぶ乱数 □地との2013系は飛ばす
                 while(true){
                     var random = Math.floor( Math.random() * pedigree_quiz[quiz_year].length );
-                    var key ="の" + true_year;
-                    if (pedigree_quiz[quiz_year][random][1].name.indexOf("□地") && pedigree_quiz[quiz_year][random][1].name.lastIndexOf(key)){
+                    var name_key = "の" + true_year;
+                    var name_string = pedigree_quiz[quiz_year][random][1].name
+                    if (name_string.indexOf("□地") && !((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length))){
                         break;
                     }
                 }
