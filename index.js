@@ -56,6 +56,12 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     text: "わっしょい！"
                 });
             }
+            if (event.message.text == "ワグネリアン"){
+                bot.replyMessage(event.replyToken, {
+                    type: "text",
+                    text: "くさい"
+                });
+            }
             if (event.message.text == '血統クイズ'){
                 bot.pushMessage(event.source.groupId, {
                     type: "text",
