@@ -28,27 +28,27 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
     // b_sire: 母父
 
     // JSON読み込み とりあえずハードコーディング
-    var cnv_pattern = require('./data/conversation/pattern.json');
-    var pedigree_quiz_2013 = require('./data/json/pedigree_2013.json');
-    var pedigree_quiz_2014 = require('./data/json/pedigree_2014.json');
-    var pedigree_quiz_2015 = require('./data/json/pedigree_2015.json');
-    var pedigree_quiz_2016 = require('./data/json/pedigree_2016.json');
-    pedigree_quiz = [pedigree_quiz_2013, pedigree_quiz_2014, pedigree_quiz_2015, pedigree_quiz_2016]
+    const cnv_pattern = require('./data/conversation/pattern.json');
+    const pedigree_quiz_2013 = require('./data/json_data/pedigree_2013.json');
+    const pedigree_quiz_2014 = require('./data/json_data/pedigree_2014.json');
+    const pedigree_quiz_2015 = require('./data/json_data/pedigree_2015.json');
+    const pedigree_quiz_2016 = require('./data/json_data/pedigree_2016.json');
+    const pedigree_quiz = [pedigree_quiz_2013, pedigree_quiz_2014, pedigree_quiz_2015, pedigree_quiz_2016]
 
     // イベントオブジェクトを順次処理
     req.body.events.forEach((event) => {
         // テキストメッセージに返信
-        if (event.type == "message" && event.message.type == "text"){
+        if (event.type == "message" && event.message.type == "text") {
             // 1対1の会話パターン
-            for (let i in cnv_pattern){
-                if (event.message.text == cnv_pattern[i][0]){
+            for (let i in cnv_pattern) {
+                if (event.message.text == cnv_pattern[i][0]) {
                     bot.replyMessage(event.replyToken, {
                         type: "text",
                         text: cnv_pattern[i][1]
                     });
                 }
             }
-            if (event.message.text == '血統クイズ'){
+            if (event.message.text == '血統クイズ') {
                 bot.pushMessage(event.source.groupId, {
                     type: "text",
                     text: "血統クイズ！張り切っていきましょー！"
@@ -57,11 +57,11 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                 var quiz_year = Math.floor( Math.random() * 4 );
                 var true_year = quiz_year + 2013
                 // 要素を選ぶ乱数 □地との2013系は飛ばす
-                while(true){
+                while(true) {
                     var random = Math.floor( Math.random() * pedigree_quiz[quiz_year].length );
                     var name_key = "の" + true_year;
                     var name_string = pedigree_quiz[quiz_year][random][1].name
-                    if (name_string.indexOf("□地") && !((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length))){
+                    if (name_string.indexOf("□地") && !((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length))) {
                         break;
                     }
                 }
@@ -100,8 +100,8 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
         }
 
         // followかjoinの場合
-        else if (event.type == 'follow' || event.type == 'join'){
-            bot.pushMessage(event.source.groupId, {
+        else if (event.type == 'follow' || event.type == 'join') {
+            bot.pushMessage(event.replyToken, {
                 type: 'text',
                 text: 'よろしくね！'
             });
