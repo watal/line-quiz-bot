@@ -28,10 +28,10 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
     // b_sire: 母父
 
     // JSON読み込み とりあえずハードコーディング
-    var pedigree_quiz_2013 = require('./data/pedigree_2013.json');
-    var pedigree_quiz_2014 = require('./data/pedigree_2014.json');
-    var pedigree_quiz_2015 = require('./data/pedigree_2015.json');
-    var pedigree_quiz_2016 = require('./data/pedigree_2016.json');
+    var pedigree_quiz_2013 = require('./data/json/pedigree_2013.json');
+    var pedigree_quiz_2014 = require('./data/json/pedigree_2014.json');
+    var pedigree_quiz_2015 = require('./data/json/pedigree_2015.json');
+    var pedigree_quiz_2016 = require('./data/json/pedigree_2016.json');
     pedigree_quiz = [pedigree_quiz_2013, pedigree_quiz_2014, pedigree_quiz_2015, pedigree_quiz_2016]
 
     // イベントオブジェクトを順次処理

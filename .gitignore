@@ -161,5 +161,6 @@ tags
 
 npm-debug.log
 node_modules
-data/*
+data/json/*
+data/conversation/pattern.json
 !.gitkeep
