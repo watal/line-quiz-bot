@@ -28,6 +28,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
     // b_sire: 母父
 
     // JSON読み込み とりあえずハードコーディング
+    var cnv_pattern = require('./data/conversation/pattern.json');
     var pedigree_quiz_2013 = require('./data/json/pedigree_2013.json');
     var pedigree_quiz_2014 = require('./data/json/pedigree_2014.json');
     var pedigree_quiz_2015 = require('./data/json/pedigree_2015.json');
@@ -38,23 +39,14 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
     req.body.events.forEach((event) => {
         // テキストメッセージに返信
         if (event.type == "message" && event.message.type == "text"){
-            if (event.message.text == "おはしゅん"){
-                bot.replyMessage(event.replyToken, {
-                    type: "text",
-                    text: "おはしゅん"
-                });
-            }
-            if (event.message.text == "こんにちは"){
-                bot.replyMessage(event.replyToken, {
-                    type: "text",
-                    text: "こんにちはー"
-                });
-            }
-            if (event.message.text == "こんばんみ"){
-                bot.replyMessage(event.replyToken, {
-                    type: "text",
-                    text: "わっしょい！"
-                });
+            // 1対1の会話パターン
+            for (let i in cnv_pattern){
+                if (event.message.text == cnv_pattern[i][0]){
+                    bot.replyMessage(event.replyToken, {
+                        type: "text",
+                        text: cnv_pattern[i][1]
+                    });
+                }
             }
             if (event.message.text == '血統クイズ'){
                 bot.pushMessage(event.source.groupId, {
