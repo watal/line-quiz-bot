@@ -69,17 +69,17 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                 setTimeout(() => {
                     bot.pushMessage(event.source.groupId, {
                         type: "text",
-                        text: "母父：" + pedigree_quiz[quiz_year][random][5].b_sire
+                        text: "母父：" + pedigree_quiz[quiz_year][random][6].b_sire
                     });
                     setTimeout(() => {
                         bot.pushMessage(event.source.groupId, {
                             type: "text",
-                            text: "母：" + pedigree_quiz[quiz_year][random][4].mother
+                            text: "母：" + pedigree_quiz[quiz_year][random][5].mother
                         });
                         setTimeout(() => {
                             bot.pushMessage(event.source.groupId, {
                                 type: "text",
-                                text: "父：" + pedigree_quiz[quiz_year][random][3].father
+                                text: "父：" + pedigree_quiz[quiz_year][random][4].father
                             });
                             setTimeout(() => {
                                 bot.pushMessage(event.source.groupId, {
@@ -91,6 +91,93 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                                         type: "text",
                                         text: "正解は" + pedigree_quiz[quiz_year][random][1].name + "でした〜"
                                     });
+                                }, 10000);
+                            }, 10000);
+                        }, 10000);
+                    }, 10000);
+                }, 1000);
+            }
+            if (event.message.text == '戦績クイズ') {
+                bot.pushMessage(event.source.groupId, {
+                    type: "text",
+                    text: "戦績クイズ！張り切っていきましょー！出題は近5走だよー！"
+                });
+                // 年度を選ぶ乱数
+                var quiz_year = Math.floor( Math.random() * 4 );
+                var true_year = quiz_year + 2013
+                // 要素を選ぶ乱数 □地との2013系は飛ばす
+                while(true) {
+                    var random = Math.floor( Math.random() * pedigree_quiz[quiz_year].length );
+                    var name_key = "の" + true_year;
+                    var name_string = pedigree_quiz[quiz_year][random][1].name
+                    if (name_string.indexOf("□地") && name_string.indexOf("○地") &&!((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length)) && pedigree_quiz[quiz_year][random][7].length >= 15) {
+                        break;
+                    }
+                }
+                // 10秒に1回ヒントを提出
+                setTimeout(() => {
+                    var race_ymd_5 = pedigree_quiz[quiz_year][random][7][12].race_ymd
+                    if(race_ymd_5 != null){
+                        bot.pushMessage(event.source.groupId, {
+                            type: "text",
+                            text: "5走前：" + race_ymd_5 + " " + pedigree_quiz[quiz_year][random][7][13].race_name + " " + pedigree_quiz[quiz_year][random][7][14].race_result + "着"
+                        })
+                    } else {
+                        bot.pushMessage(event.source.groupId, {
+                            type: "text",
+                            text: "5走前：なし"
+                        });
+                    }
+                    setTimeout(() => {
+                        var race_ymd_4 = pedigree_quiz[quiz_year][random][7][9].race_ymd
+                        if(race_ymd_4 != null){
+                            bot.pushMessage(event.source.groupId, {
+                                type: "text",
+                            text: "4走前：" + race_ymd_4 + " " + pedigree_quiz[quiz_year][random][7][10].race_name + " " + pedigree_quiz[quiz_year][random][7][11].race_result + "着"
+                            })
+                        } else {
+                            bot.pushMessage(event.source.groupId, {
+                                type: "text",
+                                text: "4走前：なし"
+                            });
+                        }
+                        setTimeout(() => {
+                            var race_ymd_3 = pedigree_quiz[quiz_year][random][7][6].race_ymd
+                            if(race_ymd_3 != null){
+                                bot.pushMessage(event.source.groupId, {
+                                    type: "text",
+                                    text: "3走前：" + race_ymd_3 + " " + pedigree_quiz[quiz_year][random][7][7].race_name + " " + pedigree_quiz[quiz_year][random][7][8].race_result + "着"
+                                })
+                            } else {
+                                bot.pushMessage(event.source.groupId, {
+                                    type: "text",
+                                    text: "3走前：なし"
+                                });
+                            }
+                                setTimeout(() => {
+                                var race_ymd_2 = pedigree_quiz[quiz_year][random][7][3].race_ymd
+                                if(race_ymd_2 != null){
+                                    bot.pushMessage(event.source.groupId, {
+                                        type: "text",
+                                        text: "2走前：" + race_ymd_2 + " " + pedigree_quiz[quiz_year][random][7][4].race_name + " " + pedigree_quiz[quiz_year][random][7][5].race_result + "着"
+                                    })
+                                } else {
+                                    bot.pushMessage(event.source.groupId, {
+                                        type: "text",
+                                        text: "2走前：なし"
+                                    });
+                                }
+                                setTimeout(() => {
+                                    bot.pushMessage(event.source.groupId, {
+                                        type: "text",
+                                        text: "前走：" + pedigree_quiz[quiz_year][random][7][0].race_ymd + " " + pedigree_quiz[quiz_year][random][7][1].race_name + " " + pedigree_quiz[quiz_year][random][7][2].race_result + "着"
+                                    });
+                                    setTimeout(() => {
+                                        bot.pushMessage(event.source.groupId, {
+                                            type: "text",
+                                            text: "正解は" + pedigree_quiz[quiz_year][random][1].name + "でした〜"
+                                        });
+                                    }, 10000);
                                 }, 10000);
                             }, 10000);
                         }, 10000);
