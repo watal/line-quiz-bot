@@ -116,11 +116,11 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                 }
                 // 10秒に1回ヒントを提出
                 setTimeout(() => {
-                    var race_ymd_5 = pedigree_quiz[quiz_year][random][6][12].race_ymd
+                    var race_ymd_5 = pedigree_quiz[quiz_year][random][7][12].race_ymd
                     if(race_ymd_5 != null){
                         bot.pushMessage(event.source.groupId, {
                             type: "text",
-                            text: "5走前：" + race_ymd_5 + " " + pedigree_quiz[quiz_year][random][6][13].race_name + " " + pedigree_quiz[quiz_year][random][6][14].race_result + "着"
+                            text: "5走前：" + race_ymd_5 + " " + pedigree_quiz[quiz_year][random][7][13].race_name + " " + pedigree_quiz[quiz_year][random][7][14].race_result + "着"
                         })
                     } else {
                         bot.pushMessage(event.source.groupId, {
@@ -129,11 +129,11 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                         });
                     }
                     setTimeout(() => {
-                        var race_ymd_4 = pedigree_quiz[quiz_year][random][6][9].race_ymd
+                        var race_ymd_4 = pedigree_quiz[quiz_year][random][7][9].race_ymd
                         if(race_ymd_4 != null){
                             bot.pushMessage(event.source.groupId, {
                                 type: "text",
-                            text: "4走前：" + race_ymd_4 + " " + pedigree_quiz[quiz_year][random][6][10].race_name + " " + pedigree_quiz[quiz_year][random][6][11].race_result + "着"
+                            text: "4走前：" + race_ymd_4 + " " + pedigree_quiz[quiz_year][random][7][10].race_name + " " + pedigree_quiz[quiz_year][random][7][11].race_result + "着"
                             })
                         } else {
                             bot.pushMessage(event.source.groupId, {
@@ -142,11 +142,11 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                             });
                         }
                         setTimeout(() => {
-                            var race_ymd_3 = pedigree_quiz[quiz_year][random][6][6].race_ymd
+                            var race_ymd_3 = pedigree_quiz[quiz_year][random][7][6].race_ymd
                             if(race_ymd_3 != null){
                                 bot.pushMessage(event.source.groupId, {
                                     type: "text",
-                                    text: "3走前：" + race_ymd_3 + " " + pedigree_quiz[quiz_year][random][6][7].race_name + " " + pedigree_quiz[quiz_year][random][6][8].race_result + "着"
+                                    text: "3走前：" + race_ymd_3 + " " + pedigree_quiz[quiz_year][random][7][7].race_name + " " + pedigree_quiz[quiz_year][random][7][8].race_result + "着"
                                 })
                             } else {
                                 bot.pushMessage(event.source.groupId, {
@@ -155,11 +155,11 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                                 });
                             }
                                 setTimeout(() => {
-                                var race_ymd_2 = pedigree_quiz[quiz_year][random][6][3].race_ymd
+                                var race_ymd_2 = pedigree_quiz[quiz_year][random][7][3].race_ymd
                                 if(race_ymd_2 != null){
                                     bot.pushMessage(event.source.groupId, {
                                         type: "text",
-                                        text: "2走前：" + race_ymd_2 + " " + pedigree_quiz[quiz_year][random][6][4].race_name + " " + pedigree_quiz[quiz_year][random][6][5].race_result + "着"
+                                        text: "2走前：" + race_ymd_2 + " " + pedigree_quiz[quiz_year][random][7][4].race_name + " " + pedigree_quiz[quiz_year][random][7][5].race_result + "着"
                                     })
                                 } else {
                                     bot.pushMessage(event.source.groupId, {
@@ -170,7 +170,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                                 setTimeout(() => {
                                     bot.pushMessage(event.source.groupId, {
                                         type: "text",
-                                        text: "前走：" + pedigree_quiz[quiz_year][random][6][0].race_ymd + " " + pedigree_quiz[quiz_year][random][6][1].race_name + " " + pedigree_quiz[quiz_year][random][6][2].race_result + "着"
+                                        text: "前走：" + pedigree_quiz[quiz_year][random][7][0].race_ymd + " " + pedigree_quiz[quiz_year][random][7][1].race_name + " " + pedigree_quiz[quiz_year][random][7][2].race_result + "着"
                                     });
                                     setTimeout(() => {
                                         bot.pushMessage(event.source.groupId, {
