@@ -110,17 +110,17 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     var random = Math.floor( Math.random() * pedigree_quiz[quiz_year].length );
                     var name_key = "の" + true_year;
                     var name_string = pedigree_quiz[quiz_year][random][1].name
-                    if (name_string.indexOf("□地") && name_string.indexOf("○地") &&!((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length)) && pedigree_quiz[quiz_year][random][7].length >= 15) {
+                    if (name_string.indexOf("□地") && name_string.indexOf("○地") &&!((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length)) && pedigree_quiz[quiz_year][random][7].length >= 30) {
                         break;
                     }
                 }
                 // 10秒に1回ヒントを提出
                 setTimeout(() => {
-                    var race_ymd_5 = pedigree_quiz[quiz_year][random][7][12].race_ymd
+                    var race_ymd_5 = pedigree_quiz[quiz_year][random][7][24].raceymd
                     if(race_ymd_5 != null){
                         bot.pushMessage(event.source.groupId, {
                             type: "text",
-                            text: "5走前：" + race_ymd_5 + " " + pedigree_quiz[quiz_year][random][7][13].race_name + " " + pedigree_quiz[quiz_year][random][7][14].race_result + "着"
+                            text: "5走前：" + race_ymd_5 + " " + pedigree_quiz[quiz_year][random][7][25].race_place + " " + pedigree_quiz[quiz_year][random][7][26].race_name + " " + pedigree_quiz[quiz_year][random][7][27].race_result + "着 鞍上" + pedigree_quiz[quiz_year][random][7][28].race_jockey + " 条件" + pedigree_quiz[quiz_year][random][7][29].race_condition
                         })
                     } else {
                         bot.pushMessage(event.source.groupId, {
@@ -142,7 +142,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                             });
                         }
                         setTimeout(() => {
-                            var race_ymd_3 = pedigree_quiz[quiz_year][random][7][6].race_ymd
+                            var race_ymd_3 = pedigree_quiz[quiz_year][random][7][7].race_ymd
                             if(race_ymd_3 != null){
                                 bot.pushMessage(event.source.groupId, {
                                     type: "text",
