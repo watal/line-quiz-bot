@@ -110,7 +110,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     var random = Math.floor( Math.random() * pedigree_quiz[quiz_year].length );
                     var name_key = "の" + true_year;
                     var name_string = pedigree_quiz[quiz_year][random][1].name
-                    if (name_string.indexOf("□地") && !((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length))) {
+                    if (name_string.indexOf("□地") && name_string.indexOf("○地") &&!((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length)) && pedigree_quiz[quiz_year][random][7].length >= 15) {
                         break;
                     }
                 }
