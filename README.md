@@ -1,7 +1,7 @@
-# pedigree_bot
-LINE用血統クイズbot
+# keiba_quiz_bot
+LINE用競馬クイズbot
 
-JSONから競走馬のプロフィールを取得し，クイズを出題します．
-[netkeiba-pedigree](https://github.com/watal1/netkeiba_pedigree)で取得したデータをdata/json_dataディレクトリに入れることで，血統クイズが出題されます．
+競走馬のデータから，クイズを出題します．
+[netkeiba-pedigree](https://github.com/watal1/netkeiba_pedigree)で取得したデータをdata/json_dataディレクトリに入れることで，血統クイズと戦績クイズが出題されます．
 
 data/conversation/pattern.jsonを作成し，一問一答形式で会話を定義できます．
