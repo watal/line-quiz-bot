@@ -61,7 +61,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     var random = Math.floor( Math.random() * pedigree_quiz[quiz_year].length );
                     var name_key = "の" + true_year;
                     var name_string = pedigree_quiz[quiz_year][random][1].name
-                    if (name_string.indexOf("□地") && !((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length))) {
+                    if (name_string.indexOf("□地") && !((name_string.lastIndexOf(name_key) + name_key.length === name_string.length) && (name_key.length<=name_string.length)) && pedigree_quiz[quiz_year][random][3] != "0万円") {
                         break;
                     }
                 }
@@ -116,7 +116,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                 }
                 // 10秒に1回ヒントを提出
                 setTimeout(() => {
-                    var race_ymd_5 = pedigree_quiz[quiz_year][random][7][24].raceymd
+                    var race_ymd_5 = pedigree_quiz[quiz_year][random][7][24].race_ymd
                     if(race_ymd_5 != null){
                         bot.pushMessage(event.source.groupId, {
                             type: "text",
@@ -129,11 +129,11 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                         });
                     }
                     setTimeout(() => {
-                        var race_ymd_4 = pedigree_quiz[quiz_year][random][7][9].race_ymd
+                        var race_ymd_4 = pedigree_quiz[quiz_year][random][7][18].race_ymd
                         if(race_ymd_4 != null){
                             bot.pushMessage(event.source.groupId, {
                                 type: "text",
-                            text: "4走前：" + race_ymd_4 + " " + pedigree_quiz[quiz_year][random][7][10].race_name + " " + pedigree_quiz[quiz_year][random][7][11].race_result + "着"
+                                text: "4走前：" + race_ymd_4 + " " + pedigree_quiz[quiz_year][random][7][19].race_result + " " + pedigree_quiz[quiz_year][random][7][20].racename + " " + pedigree_quiz[quiz_year][random][7][21].race_result + "着 鞍上" + pedigree_quiz[quiz_year][random][7][22].race_jockey + " 条件" + pedigree_quiz[quiz_year][random][7][23].race_condition
                             })
                         } else {
                             bot.pushMessage(event.source.groupId, {
@@ -142,11 +142,11 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                             });
                         }
                         setTimeout(() => {
-                            var race_ymd_3 = pedigree_quiz[quiz_year][random][7][7].race_ymd
+                            var race_ymd_3 = pedigree_quiz[quiz_year][random][7][12].race_ymd
                             if(race_ymd_3 != null){
                                 bot.pushMessage(event.source.groupId, {
                                     type: "text",
-                                    text: "3走前：" + race_ymd_3 + " " + pedigree_quiz[quiz_year][random][7][7].race_name + " " + pedigree_quiz[quiz_year][random][7][8].race_result + "着"
+                                    text: "3走前：" + race_ymd_3 + " " + pedigree_quiz[quiz_year][random][7][13].race_result + " " + pedigree_quiz[quiz_year][random][7][14].racename + " " + pedigree_quiz[quiz_year][random][7][15].race_result + "着 鞍上" + pedigree_quiz[quiz_year][random][7][16].race_jockey + " 条件" + pedigree_quiz[quiz_year][random][7][17].race_condition
                                 })
                             } else {
                                 bot.pushMessage(event.source.groupId, {
@@ -155,11 +155,11 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                                 });
                             }
                                 setTimeout(() => {
-                                var race_ymd_2 = pedigree_quiz[quiz_year][random][7][3].race_ymd
+                                var race_ymd_2 = pedigree_quiz[quiz_year][random][7][6].race_ymd
                                 if(race_ymd_2 != null){
                                     bot.pushMessage(event.source.groupId, {
                                         type: "text",
-                                        text: "2走前：" + race_ymd_2 + " " + pedigree_quiz[quiz_year][random][7][4].race_name + " " + pedigree_quiz[quiz_year][random][7][5].race_result + "着"
+                                        text: "2走前：" + race_ymd_2 + " " + pedigree_quiz[quiz_year][random][7][7].race_result + " " + pedigree_quiz[quiz_year][random][7][8].racename + " " + pedigree_quiz[quiz_year][random][7][9].race_result + "着 鞍上" + pedigree_quiz[quiz_year][random][7][10].race_jockey + " 条件" + pedigree_quiz[quiz_year][random][7][11].race_condition
                                     })
                                 } else {
                                     bot.pushMessage(event.source.groupId, {
@@ -170,7 +170,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                                 setTimeout(() => {
                                     bot.pushMessage(event.source.groupId, {
                                         type: "text",
-                                        text: "前走：" + pedigree_quiz[quiz_year][random][7][0].race_ymd + " " + pedigree_quiz[quiz_year][random][7][1].race_name + " " + pedigree_quiz[quiz_year][random][7][2].race_result + "着"
+                                        text: "前走：" + pedigree_quiz[quiz_year][random][7][0].race_ymd + " " + pedigree_quiz[quiz_year][random][7][1].race_result + " " + pedigree_quiz[quiz_year][random][7][2].racename + " " + pedigree_quiz[quiz_year][random][7][3].race_result + "着 鞍上" + pedigree_quiz[quiz_year][random][7][4].race_jockey + " 条件" + pedigree_quiz[quiz_year][random][6][5].race_condition
                                     });
                                     setTimeout(() => {
                                         bot.pushMessage(event.source.groupId, {
