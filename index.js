@@ -91,10 +91,10 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                                         type: "text",
                                         text: "正解は" + pedigree_quiz[quiz_year][random][1].name + "でした〜"
                                     });
-                                }, 10000);
-                            }, 10000);
-                        }, 10000);
-                    }, 10000);
+                                }, 6000);
+                            }, 6000);
+                        }, 6000);
+                    }, 6000);
                 }, 1000);
             }
             if (event.message.text == '戦績クイズ') {
@@ -116,7 +116,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                 }
 
                 // 5走前，4走前，3走前，2走前の待ち時間
-                let wait_times = [10000, 10000, 10000, 10000]
+                let wait_times = [6000, 6000, 6000, 6000]
                 if (pedigree_quiz[quiz_year][random][7][24] == null) {wait_times[0] = 3000}
                 if (pedigree_quiz[quiz_year][random][7][18] == null) {wait_times[1] = 3000}
                 if (pedigree_quiz[quiz_year][random][7][12] == null) {wait_times[2] = 3000}
@@ -185,7 +185,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                                             type: "text",
                                             text: "正解は" + pedigree_quiz[quiz_year][random][1].name + "でした〜"
                                         });
-                                    }, 10000);
+                                    }, 6000);
                                 }, wait_times[3]);
                             }, wait_times[2]);
                         }, wait_times[1]);
