@@ -8,7 +8,7 @@ JSONのデータから，クイズを出題します．
 ### ダムクイズ
 [国土交通省の国土数値情報ダウンロードサービス](http://nlftp.mlit.go.jp/ksj/index.html)にあるダムデータを利用し，ダムクイズを出題します．
 
-xmlファイルを[xmltojson](https://github.com/watal1/netkeiba_pedigree)でjson形式に変更し，`data/json_data`ディレクトリに入れてください．
+xmlファイルを[xmltojson](https://github.com/watal1/xmltojson)でjson形式に変更し，`data/json_data`ディレクトリに入れてください．
 
 ### 競走馬クイズ
 [netkeiba-collector](https://github.com/watal1/netkeiba_pedigree)で取得したデータを`data/json_data`ディレクトリに入れることで，競走馬クイズが出題されます．
