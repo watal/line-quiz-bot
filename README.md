@@ -2,12 +2,11 @@
 LINE用クイズbot
 
 ## 出題クイズ
-JSONのデータから，クイズを出題します．
+JSONのデータから，クイズを出題します．  
 現在，以下の二種類のクイズを実装しています．
 
 ### ダムクイズ
-[国土交通省の国土数値情報ダウンロードサービス](http://nlftp.mlit.go.jp/ksj/index.html)にあるダムデータを利用し，ダムクイズを出題します．
-
+[国土交通省の国土数値情報ダウンロードサービス](http://nlftp.mlit.go.jp/ksj/index.html)にあるダムデータを利用し，ダムクイズを出題します．  
 xmlファイルを[xmltojson](https://github.com/watal1/xmltojson)でjson形式に変更し，`data/json_data`ディレクトリに入れてください．
 
 ### 競走馬クイズ
