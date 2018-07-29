@@ -28,12 +28,14 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
     // b_sire: 母父
 
     // JSON読み込み とりあえずハードコーディング
+    // 会話パターンのように自由に追加できるようにしたい．
     const cnv_pattern = require('./data/conversation/pattern.json');
     const pedigree_quiz_2013 = require('./data/json_data/pedigree_2013.json');
     const pedigree_quiz_2014 = require('./data/json_data/pedigree_2014.json');
     const pedigree_quiz_2015 = require('./data/json_data/pedigree_2015.json');
     const pedigree_quiz_2016 = require('./data/json_data/pedigree_2016.json');
     const pedigree_quiz = [pedigree_quiz_2013, pedigree_quiz_2014, pedigree_quiz_2015, pedigree_quiz_2016]
+    const Dam_data = require('./data/json_data/Dam.json');
 
     // イベントオブジェクトを順次処理
     req.body.events.forEach((event) => {
@@ -188,6 +190,74 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                             }, wait_times[2]);
                         }, wait_times[1]);
                     }, wait_times[0]);
+                }, 1000);
+            }
+
+            if (event.message.text == 'ダムクイズ') {
+                bot.pushMessage(event.source.groupId, {
+                    type: 'text',
+                    text: 'ダムクイズ！張り切っていきましょー！'
+                });
+
+                dam_purpose = ['洪水調整，農地防災', '不特定用水，河川維持用水', '灌漑，特定（新規）灌漑用水', '上水道用水', '工業用水道用水', '発電', '消流雪用水', 'レクリエーション']
+                dam_type = ['アーチダム', 'バットレスダム', 'アースダム', 'アスファルトフェイシングダム', 'アスファルトコアダム', 'フローティングゲートダム', '重力式コンクリートダム', '重力式アーチダム', '重力式コンクリートダム・フィルダム複合ダム', '中空重力式コンクリートダム', 'マルティプルアーチダム', 'ロックフィルダム', '台形CSGダム']
+
+                // ダムを選ぶ乱数
+                while (true) {
+                    var random = Math.floor( Math.random() * Dam_data['ksj:Dataset']['ksj:Dam'].length);
+                    var target_dam = Dam_data['ksj:Dataset']['ksj:Dam'][random]
+                    break;
+                }
+
+                let purposes = target_dam['ksj:purpose']
+                if (typeof purposes === 'object') {
+                    target_purpose = dam_purpose[target_dam['ksj:purpose'][0] - 1]
+                    for (let i=1 ; i < purposes.length ; i++) {
+                        target_purpose = target_purpose + '・' + dam_purpose[target_dam['ksj:purpose'][i] - 1]
+                    }
+                } else {
+                    target_purpose = dam_purpose[target_dam['ksj:purpose'] - 1]
+                }
+
+                let target_address = target_dam['ksj:address']
+                let prefecture = target_address.match(/.{2,3}?[都道府県]/);
+
+                // ヒントを提出
+                setTimeout(() => {
+                    bot.pushMessage(event.source.groupId, {
+                        type: 'text',
+                        text: '目的：' + target_purpose
+                    });
+                    setTimeout(() => {
+                        bot.pushMessage(event.source.groupId, {
+                            type: 'text',
+                            text: '総貯水量：' + target_dam['ksj:totalPondage'] + '千㎥'
+                        });
+                        setTimeout(() => {
+                            bot.pushMessage(event.source.groupId, {
+                                type: 'text',
+                                text: '型式：' + dam_type[target_dam['ksj:type'] - 1]
+                            });
+                            setTimeout(() => {
+                                bot.pushMessage(event.source.groupId, {
+                                    type: 'text',
+                                    text: '水系：' + target_dam['ksj:waterSystemName']
+                                });
+                                setTimeout(() => {
+                                    bot.pushMessage(event.source.groupId, {
+                                        type: 'text',
+                                        text: '所在地：' + prefecture
+                                    });
+                                    setTimeout(() => {
+                                        bot.pushMessage(event.source.groupId, {
+                                            type: 'text',
+                                            text: '正解は' + target_dam['ksj:damName'] + 'ダムでした〜'
+                                        });
+                                    }, 10000);
+                                }, 6000);
+                            }, 6000);
+                        }, 6000);
+                    }, 6000);
                 }, 1000);
             }
         }
