@@ -1,21 +1,23 @@
-// モジュールのインポート
-const server = require('express')();    // Express
-const line = require('@line/bot-sdk');  // Messaging APIのSDK
+'use strict';
 
-// パラメータ設定
+// モジュールのインポート
+const line = require('@line/bot-sdk');  // Messaging APIのSDK
+const express = require('express')();    // Express
+
+// 環境変数からLINE SDK用のパラメータ設定
 const line_config = {
     channelAccessToken: process.env.LINE_ACCESS_TOKEN,  // アクセストークン
     channelSecret: process.env.LINE_CHANNEL_SECRET      // Channel Secret
 };
 
 // Webサーバ設定
-server.listen(process.env.PORT || 3000);
+express.listen(process.env.PORT || 3000);
 
 // APIコールのためのクライアントインスタンスを作成
 const bot = new line.Client(line_config);
 
-// ルーター設定
-server.post('/webhook', line.middleware(line_config), (req, res, next) => {
+// webhook設定
+express.post('/webhook', line.middleware(line_config), (req, res, next) => {
     // LINEにステータスコード200でレスポンス
     res.sendStatus(200);
 
