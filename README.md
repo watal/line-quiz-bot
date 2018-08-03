@@ -20,3 +20,7 @@ xmlファイルを[xmltojson](https://github.com/watal1/xmltojson)でjson形式�
 
 ## 自由会話
 `data/conversation/pattern.json`を作成し，一問一答形式で会話を定義できます．
+
+## 使用ライブラリ
+[line-bot-sdk-nodejs](https://github.com/line/line-bot-sdk-nodejs)  
+- Apache License Version 2.0 [（https://github.com/line/line-bot-sdk-nodejs/blob/master/LICENSE）](https://github.com/line/line-bot-sdk-nodejs/blob/master/LICENSE)
