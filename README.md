@@ -10,7 +10,7 @@ JSONのデータから，クイズを出題します．
 xmlファイルを[xmltojson](https://github.com/watal/xmltojson)でjson形式に変更し，`data/json_data/Dam.json`として保存してください．
 
 ### 競走馬クイズ
-[netkeiba-collector](https://github.com/watal/netkeiba-collector)で取得したデータを`data/json_data/pedigree_201(3..6}.json`として保存してください．  
+[netkeiba-collector](https://github.com/watal/netkeiba-collector)で取得したデータを`data/json_data/pedigree_201{3..6}.json`として保存してください．  
 競走馬クイズでは，血統クイズと戦績クイズが選択できます．
 
 - 血統クイズ
