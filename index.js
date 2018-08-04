@@ -34,6 +34,7 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
     const pedigree_quiz_2015 = require('./data/json_data/pedigree_2015.json');
     const pedigree_quiz_2016 = require('./data/json_data/pedigree_2016.json');
     const pedigree_quiz = [pedigree_quiz_2013, pedigree_quiz_2014, pedigree_quiz_2015, pedigree_quiz_2016]
+    const baseball = require('./data/json_data/baseball.json');
 
     // イベントオブジェクトを順次処理
     req.body.events.forEach((event) => {
@@ -190,6 +191,62 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                             }, wait_times[2]);
                         }, wait_times[1]);
                     }, wait_times[0]);
+                }, 1000);
+            }
+            
+            if (event.message.text == '選手クイズ') {
+                bot.pushMessage(event.source.groupId, {
+                    type: "text",
+                    text: "選手クイズ！張り切っていきましょー！"
+                });
+                // 10秒に1回ヒントを提出
+                setTimeout(() => {
+                    bot.pushMessage(event.source.groupId, {
+                        type: "text",
+                        text: "投打：" + baseball[random][4].toda
+                    });
+                    setTimeout(() => {
+                        bot.pushMessage(event.source.groupId, {
+                        type: "text",
+                        text: "身長体重：" + baseball[random][5].heightandweight
+                        });
+                        setTimeout(() => {
+                            bot.pushMessage(event.source.groupId, {
+                        	type: "text",
+                        	text: "生年月日：" + baseball[random][6].born
+                            });
+                            setTimeout(() => {
+                                bot.pushMessage(event.source.groupId, {
+                        		type: "text",
+                        		text: "ポジション：" + baseball[random][3].position
+                                });
+                                setTimeout(() => {
+                                	bot.pushMessage(event.source.groupId, {
+                        			type: "text",
+                        			text: "ドラフト：" + baseball[random][8].draft
+                                	});
+                                	setTimeout(() => {
+                                		bot.pushMessage(event.source.groupId, {
+                        				type: "text",
+                        				text: "経歴：" + baseball[random][7].career
+                                		});
+                                		setTimeout(() => {
+                                			bot.pushMessage(event.source.groupId, {
+                        					type: "text",
+                        					text: "所属チーム：" + baseball[random][1].team
+                                			});
+                                			setTimeout(() => {
+                                    			bot.pushMessage(event.source.groupId, {
+                                        		type: "text",
+                                        		text: "正解は" + pedigree_quiz[quiz_year][random][1].name + "選手でした〜"
+                                    			});
+                                    		}, 10000);
+                                    	}, 6000);
+                                	}, 6000);
+                                }, 6000);
+                            }, 6000);
+                        }, 6000);
+                    }, 6000);
                 }, 1000);
             }
         }
