@@ -19,7 +19,24 @@ xmlファイルを[xmltojson](https://github.com/watal1/xmltojson)でjson形式�
     五走前までの競走成績がヒントとして出されます．
 
 ## 自由会話
-`data/conversation/pattern.json`を作成し，一問一答形式で会話を定義できます．
+`data/conversation/pattern.json`に，一問一答形式で会話を定義できます．  
+書式は以下の通りです．
+```
+[
+    [
+        "0", 
+        "こんにちは",
+        "こんにちはー"
+    ]
+]
+```
+- 第一要素にはマッチタイプを0から3で指定します．
+    - 0：完全一致 
+    - 1：部分一致
+    - 2：前方一致
+    - 3：後方一致
+- 第二要素にはキーとなる人間側のメッセージを指定します
+- 第三要素にはbotからの返答となるメッセージを指定します
 
 ## 使用ライブラリ
 [line-bot-sdk-nodejs](https://github.com/line/line-bot-sdk-nodejs)  
