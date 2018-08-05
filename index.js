@@ -283,7 +283,7 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                             }, 1000);
                         };
 
-                        if (event.message.text == '選手クイズ') {
+                        if (message.text == '選手クイズ') {
                             bot.pushMessage(event.source.groupId, {
                                 type: "text",
                                 text: "選手クイズ！張り切っていきましょー！"
