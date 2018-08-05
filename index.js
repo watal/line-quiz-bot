@@ -221,7 +221,11 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
             while (true) {
                 var random = Math.floor( Math.random() * Dam_data['ksj:Dataset']['ksj:Dam'].length);
                 var target_dam = Dam_data['ksj:Dataset']['ksj:Dam'][random];
-                break;
+
+                // 難易度調整のためアースダムを除外
+                if (target_dam['ksj:type'] != 3) {
+                    break;
+                };
             };
 
             let purposes = target_dam['ksj:purpose'];
