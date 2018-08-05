@@ -344,23 +344,23 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                             }, 1000);
                         };
                         break;
-
-                    // フォロー時のメッセージ
-                    case 'follow':
-                        bot.pushMessage(event.replyToken, {
-                            type: 'text',
-                            text: 'フォローありがとう！よろしくね！'
-                        });
-                        break;
-
-                    // グループ追加時のメッセージ
-                    case 'join':
-                        bot.pushMessage(event.replyToken, {
-                            type: 'text',
-                            text: '招待ありがとう！よろしくね！'
-                        });
-                        break;
                 };
+                break;
+
+            // フォロー時のメッセージ
+            case 'follow':
+                bot.pushMessage(event.replyToken, {
+                    type: 'text',
+                    text: 'フォローありがとう！よろしくね！'
+                });
+                break;
+
+            // グループ追加時のメッセージ
+            case 'join':
+                bot.pushMessage(event.replyToken, {
+                    type: 'text',
+                    text: '招待ありがとう！よろしくね！'
+                });
                 break;
         };
     });
