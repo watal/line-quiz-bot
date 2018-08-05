@@ -21,7 +21,7 @@ xmlファイルを[xmltojson](https://github.com/watal/xmltojson)でjson形式�
 
 ### 野球選手クイズ
 各野球選手のプロフィールをヒントに，選手クイズを出題します．  
-[npb-collector](https://github.com/watal/npb-collector)で取得したデータを`data/json_data/baseball_player.json`として保存してください．
+[npb-collector](https://github.com/noddy753/npb-collector)で取得したデータを`data/json_data/baseball_player.json`として保存してください．
 
 ## 自由会話
 `data/conversation/pattern.json`に，一問一答形式で会話を定義できます．  
