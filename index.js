@@ -40,30 +40,7 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
 
     // テキストメッセージ処理関数
     function handleText(message, event) {
-        // 1対1の会話パターン
-        for (let i in cnv_pattern) {
-            let match_pattern;
-            if (cnv_pattern[i][0] == 0) {
-            // 配列の第0要素が1なら完全一致
-                match_pattern = new RegExp('^' + cnv_pattern[i][1] + '$');
-            // 配列の第0要素が1なら部分一致
-            } else if (cnv_pattern[i][0] == 1) {
-                match_pattern = new RegExp('.*' + cnv_pattern[i][1] + '.*');
-            // 配列の第0要素が2なら前方一致
-            } else if (cnv_pattern[i][0] == 2) {
-                match_pattern = new RegExp('^' + cnv_pattern[i][1] + '.*');
-            // 配列の第0要素が3なら後方一致
-            } else if (cnv_pattern[i][0] == 3) {
-                match_pattern = new RegExp('.*' + cnv_pattern[i][1] + '$');
-            };
-            if (message.text.match(match_pattern)) {
-                bot.replyMessage(event.replyToken, {
-                    type: 'text',
-                    text: cnv_pattern[i][2]
-                });
-            };
-        };
-        // クイズ  take_quiz(message);
+        // クイズ
         if (message.text == '血統クイズ') {
             bot.pushMessage(event.source.groupId, {
                 type: 'text',
@@ -113,9 +90,7 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     }, 6000);
                 }, 6000);
             }, 1000);
-        };
-
-        if (message.text == '戦績クイズ') {
+        } else if (message.text == '戦績クイズ') {
             bot.pushMessage(event.source.groupId, {
                 type: 'text',
                 text: '戦績クイズ！張り切っていきましょー！出題は近5走だよー！'
@@ -206,9 +181,7 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     }, wait_times[1]);
                 }, wait_times[0]);
             }, 1000);
-        };
-
-        if (message.text == 'ダムクイズ') {
+        } else if (message.text == 'ダムクイズ') {
             bot.pushMessage(event.source.groupId, {
                 type: 'text',
                 text: 'ダムクイズ！張り切っていきましょー！'
@@ -280,9 +253,7 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     }, 6000);
                 }, 6000);
             }, 1000);
-        };
-
-        if (message.text == '選手クイズ') {
+        } else if (message.text == '選手クイズ') {
             bot.pushMessage(event.source.groupId, {
                 type: "text",
                 text: "選手クイズ！張り切っていきましょー！"
@@ -341,6 +312,30 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     }, 6000);
                 }, 6000);
             }, 1000);
+        } else {
+            // 1対1の会話パターン
+            for (let i in cnv_pattern) {
+                let match_pattern;
+                if (cnv_pattern[i][0] == 0) {
+                // 配列の第0要素が1なら完全一致
+                    match_pattern = new RegExp('^' + cnv_pattern[i][1] + '$');
+                // 配列の第0要素が1なら部分一致
+                } else if (cnv_pattern[i][0] == 1) {
+                    match_pattern = new RegExp('.*' + cnv_pattern[i][1] + '.*');
+                // 配列の第0要素が2なら前方一致
+                } else if (cnv_pattern[i][0] == 2) {
+                    match_pattern = new RegExp('^' + cnv_pattern[i][1] + '.*');
+                // 配列の第0要素が3なら後方一致
+                } else if (cnv_pattern[i][0] == 3) {
+                    match_pattern = new RegExp('.*' + cnv_pattern[i][1] + '$');
+                };
+                if (message.text.match(match_pattern)) {
+                    bot.replyMessage(event.replyToken, {
+                        type: 'text',
+                        text: cnv_pattern[i][2]
+                    });
+                };
+            };
         };
     };
 
