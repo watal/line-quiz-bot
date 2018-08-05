@@ -235,7 +235,9 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
             };
 
             let target_address = target_dam['ksj:address'];
-            let prefecture = target_address.match(/.{2,3}?[都道府県]/);
+            let prefecture = target_address
+            // 都道府県のみに制限する正規表現
+            // let prefecture = target_address.match(/.{2,3}?[都道府県]/);
 
             // ヒントを提出
             setTimeout(() => {
