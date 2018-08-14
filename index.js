@@ -343,6 +343,179 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                                 }, 6000);
                             }, 1000);
                         };
+                        
+                        if (message.text == '成績クイズ') {
+                            bot.pushMessage(event.source.groupId, {
+                                type: 'text',
+                                text: '成績クイズ！張り切っていきましょー！出題は近5年だよー！'
+                            });
+                            // 過去5年1軍出場が無い選手は飛ばす
+                            while(true) {
+                                // 選手を選ぶ乱数
+                            	var random = Math.floor( Math.random() * baseball.length);
+                                if ( baseball[random][8].indexOf('2014') || baseball[random][8].indexOf('2015') || baseball[random][8].indexOf('2016') ||  baseball[random][8].indexOf('2017') ||  baseball[random][8].indexOf('2018')) {
+                                    break;
+                                };
+                            };
+                            
+							if(baseball[random][2].position = "投手"){
+	                            // 10秒に1回ヒントを提出
+	                            setTimeout(() => {
+	                            	var list_no_5 = baseball[random][8].indexOf('2014')
+	                                if (list_no_5 != null) {
+	                                    bot.pushMessage(event.source.groupId, {
+	                                        type: 'text',
+	                                        text: '2014年' + '\n　チーム：' + baseball[random][8][list_no_5 + 1] + '\n　' + baseball[random][8][list_no_5 + 2] + '試合\n　' + baseball[random][8][list_no_5 + 3] + '勝\n　：' + baseball[random][8][list_no_5 + 4] + '敗\n　：' + baseball[random][8][list_no_5 + 5] + 'セーブ\n　：' + baseball[random][8][list_no_5 + 6]+ 'ホールド\n　防御率：' + baseball[random][8][list_no_5 + 7]
+	                                    });
+	                                } else {
+	                                    bot.pushMessage(event.source.groupId, {
+	                                        type: 'text',
+	                                        text: '2014年：1軍出場無し'
+	                                    });
+	                                };
+	                                setTimeout(() => {
+	                            		var list_no_4 = baseball[random][8].indexOf('2015')
+	                                	if (list_no_4 != null) {
+	                                    	bot.pushMessage(event.source.groupId, {
+	                                        	type: 'text',
+	                                        	text: '2015年' + '\n　チーム：' + baseball[random][8][list_no_4 + 1] + '\n　' + baseball[random][8][list_no_4 + 2] + '試合\n　' + baseball[random][8][list_no_4 + 3] + '勝\n　：' + baseball[random][8][list_no_4 + 4] + '敗\n　：' + baseball[random][8][list_no_4 + 5] + 'セーブ\n　：' + baseball[random][8][list_no_4 + 6]+ 'ホールド\n　防御率：' + baseball[random][8][list_no_4 + 7]
+	                                    	});
+	                                	} else {
+	                                    	bot.pushMessage(event.source.groupId, {
+	                                        	type: 'text',
+	                                        	text: '2015年：1軍出場無し'
+	                                    	});
+	                                	};
+	                                    setTimeout(() => {
+	                            			var list_no_3 = baseball[random][8].indexOf('2016')
+	                                		if (list_no_3 != null) {
+	                                    		bot.pushMessage(event.source.groupId, {
+	                                        		type: 'text',
+	                                        		text: '2016年' + '\n　チーム：' + baseball[random][8][list_no_3 + 1] + '\n　' + baseball[random][8][list_no_3 + 2] + '試合\n　' + baseball[random][8][list_no_3 + 3] + '勝\n　：' + baseball[random][8][list_no_3 + 4] + '敗\n　：' + baseball[random][8][list_no_3 + 5] + 'セーブ\n　：' + baseball[random][8][list_no_3 + 6]+ 'ホールド\n　防御率：' + baseball[random][8][list_no_3 + 7]
+	                                    		});
+	                                		} else {
+	                                    		bot.pushMessage(event.source.groupId, {
+	                                        		type: 'text',
+	                                        		text: '2016年：1軍出場無し'
+	                                    		});
+	                                		};
+	                                        setTimeout(() => {
+	                            				var list_no_2 = baseball[random][8].indexOf('2017')
+	                                			if (list_no_2 != null) {
+	                                    			bot.pushMessage(event.source.groupId, {
+	                                        			type: 'text',
+	                                        			text: '2017年' + '\n　チーム：' + baseball[random][8][list_no_2 + 1] + '\n　' + baseball[random][8][list_no_2 + 2] + '試合\n　' + baseball[random][8][list_no_2 + 3] + '勝\n　：' + baseball[random][8][list_no_2 + 4] + '敗\n　：' + baseball[random][8][list_no_2 + 5] + 'セーブ\n　：' + baseball[random][8][list_no_2 + 6]+ 'ホールド\n　防御率：' + baseball[random][8][list_no_2 + 7]
+	                                    			});
+	                                			} else {
+	                                    			bot.pushMessage(event.source.groupId, {
+	                                        			type: 'text',
+	                                        			text: '2017年：1軍出場無し'
+	                                    			});
+	                                			};
+	                                            setTimeout(() => {
+	                            					var list_no_1 = baseball[random][8].indexOf('2018')
+	                                				if (list_no_1 != null) {
+	                                    				bot.pushMessage(event.source.groupId, {
+	                                        				type: 'text',
+	                                        				text: '2018年' + '\n　チーム：' + baseball[random][8][list_no_1 + 1] + '\n　' + baseball[random][8][list_no_1 + 2] + '試合\n　' + baseball[random][8][list_no_1 + 3] + '勝\n　：' + baseball[random][8][list_no_1 + 4] + '敗\n　：' + baseball[random][8][list_no_1 + 5] + 'セーブ\n　：' + baseball[random][8][list_no_1 + 6]+ 'ホールド\n　防御率：' + baseball[random][8][list_no_1 + 7]
+	                                    				});
+	                                				} else {
+	                                    				bot.pushMessage(event.source.groupId, {
+	                                        				type: 'text',
+	                                        				text: '2018年：1軍出場無し'
+	                                    				});
+	                                				};
+	                                                setTimeout(() => {
+	                                                    bot.pushMessage(event.source.groupId, {
+	                                                    	type: "text",
+	                                                        text: "正解は" + baseball[random][1].name + "選手でした〜"
+	                                                    });
+	                                                }, 10000);
+	                                            }, 5000);
+	                                        }, 5000);
+	                                    }, 5000);
+	                                }, 5000);
+	                            }, 1000);
+	                    	}else{
+	                    		// 10秒に1回ヒントを提出
+	                            setTimeout(() => {
+	                            	var list_no_5 = baseball[random][8].indexOf('2014')
+	                                if (list_no_5 != null) {
+	                                    bot.pushMessage(event.source.groupId, {
+	                                        type: 'text',
+	                                        text: '2014年' + '\n　チーム：' + baseball[random][8][list_no_5 + 1] + '\n　' + baseball[random][8][list_no_5 + 2] + '試合\n　' + baseball[random][8][list_no_5 + 3] + '打席\n　安打：' + baseball[random][8][list_no_5 + 4] + '本\n　HR：' + baseball[random][8][list_no_5 + 5] + '本\n　打点：' + baseball[random][8][list_no_5 + 6]+ '点\n　盗塁：' + baseball[random][8][list_no_5 + 7] + '個\n　打率：' + baseball[random][8][list_no_5 + 8]
+	                                    });
+	                                } else {
+	                                    bot.pushMessage(event.source.groupId, {
+	                                        type: 'text',
+	                                        text: '2014年：1軍出場無し'
+	                                    });
+	                                };
+	                                setTimeout(() => {
+	                            		var list_no_4 = baseball[random][8].indexOf('2015')
+	                                	if (list_no_4 != null) {
+	                                    	bot.pushMessage(event.source.groupId, {
+	                                        	type: 'text',
+	                                        	text: '2015年' + '\n　チーム：' + baseball[random][8][list_no_4 + 1] + '\n　' + baseball[random][8][list_no_4 + 2] + '試合\n　' + baseball[random][8][list_no_4 + 3] + '打席\n　安打：' + baseball[random][8][list_no_4 + 4] + '本\n　HR：' + baseball[random][8][list_no_4 + 5] + '本\n　打点：' + baseball[random][8][list_no_4 + 6]+ '点\n　盗塁：' + baseball[random][8][list_no_4 + 7] + '個\n　打率：' + baseball[random][8][list_no_4 + 8]
+	                                        });
+	                                	} else {
+	                                    	bot.pushMessage(event.source.groupId, {
+	                                        	type: 'text',
+	                                        	text: '2015年：1軍出場無し'
+	                                    	});
+	                                	};
+	                                    setTimeout(() => {
+	                            			var list_no_3 = baseball[random][8].indexOf('2016')
+	                                		if (list_no_3 != null) {
+	                                    		bot.pushMessage(event.source.groupId, {
+	                                        		type: 'text',
+	                                        		text: '2016年' + '\n　チーム：' + baseball[random][8][list_no_3 + 1] + '\n　' + baseball[random][8][list_no_3 + 2] + '試合\n　' + baseball[random][8][list_no_3 + 3] + '打席\n　安打：' + baseball[random][8][list_no_3 + 4] + '本\n　HR：' + baseball[random][8][list_no_3 + 5] + '本\n　打点：' + baseball[random][8][list_no_3 + 6]+ '点\n　盗塁：' + baseball[random][8][list_no_3 + 7] + '個\n　打率：' + baseball[random][8][list_no_3 + 8]
+	                                        	});
+	                                		} else {
+	                                    		bot.pushMessage(event.source.groupId, {
+	                                        		type: 'text',
+	                                        		text: '2016年：1軍出場無し'
+	                                    		});
+	                                		};
+	                                        setTimeout(() => {
+	                            				var list_no_2 = baseball[random][8].indexOf('2017')
+	                                			if (list_no_2 != null) {
+	                                    			bot.pushMessage(event.source.groupId, {
+	                                        			type: 'text',
+	                                        			text: '2017年' + '\n　チーム：' + baseball[random][8][list_no_2 + 1] + '\n　' + baseball[random][8][list_no_2 + 2] + '試合\n　' + baseball[random][8][list_no_2 + 3] + '打席\n　安打：' + baseball[random][8][list_no_2 + 4] + '本\n　HR：' + baseball[random][8][list_no_2 + 5] + '本\n　打点：' + baseball[random][8][list_no_2 + 6]+ '点\n　盗塁：' + baseball[random][8][list_no_2 + 7] + '個\n　打率：' + baseball[random][8][list_no_2 + 8]
+	                                        		});
+	                                			} else {
+	                                    			bot.pushMessage(event.source.groupId, {
+	                                        			type: 'text',
+	                                        			text: '2017年：1軍出場無し'
+	                                    			});
+	                                			};
+	                                            setTimeout(() => {
+	                            					var list_no_1 = baseball[random][8].indexOf('2018')
+	                                				if (list_no_1 != null) {
+	                                    				bot.pushMessage(event.source.groupId, {
+	                                        				type: 'text',
+	                                        				text: '2018年' + '\n　チーム：' + baseball[random][8][list_no_1 + 1] + '\n　' + baseball[random][8][list_no_1 + 2] + '試合\n　' + baseball[random][8][list_no_1 + 3] + '打席\n　安打：' + baseball[random][8][list_no_1 + 4] + '本\n　HR：' + baseball[random][8][list_no_1 + 5] + '本\n　打点：' + baseball[random][8][list_no_1 + 6]+ '点\n　盗塁：' + baseball[random][8][list_no_1 + 7] + '個\n　打率：' + baseball[random][8][list_no_1 + 8]
+	                                        			});
+	                                				} else {
+	                                    				bot.pushMessage(event.source.groupId, {
+	                                        				type: 'text',
+	                                        				text: '2018年：1軍出場無し'
+	                                    				});
+	                                				};
+	                                                setTimeout(() => {
+	                                                    bot.pushMessage(event.source.groupId, {
+	                                                    	type: "text",
+	                                                        text: "正解は" + baseball[random][1].name + "選手でした〜"
+	                                                    });
+	                                                }, 10000);
+	                                            }, 5000);
+	                                        }, 5000);
+	                                    }, 5000);
+	                                }, 5000);
+	                            }, 1000);
+	                    	};
+                        };
                         break;
 
                     // フォロー時のメッセージ
