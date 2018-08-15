@@ -13,15 +13,20 @@ xmlファイルを[xmltojson](https://github.com/watal/xmltojson)でjson形式�
 [netkeiba-collector](https://github.com/watal/netkeiba-collector)で取得したデータを`data/json_data/pedigree_201{3..6}.json`として保存してください．  
 競走馬クイズでは，血統クイズと戦績クイズが選択できます．
 
-- 血統クイズ
+- 血統クイズ  
     競走馬の母父・母・父・生年月日がヒントとして出されます．
 
-- 戦績クイズ
+- 戦績クイズ  
     五走前までの競走成績がヒントとして出されます．
 
 ### 野球選手クイズ
-各野球選手のプロフィールをヒントに，選手クイズを出題します．  
-[npb-collector](https://github.com/watal/npb-collector)で取得したデータを`data/json_data/baseball_player.json`として保存してください．
+[npb-collector](https://github.com/watal/npb-collector)で取得したデータを`data/json_data/baseball_player.json`として保存してください．  
+野球選手クイズでは，選手クイズと成績クイズが選択できます．
+
+- 選手クイズ  
+    各野球選手のプロフィールをヒントに，選手クイズを出題します．
+- 成績クイズ  
+    2014年以降の成績をヒントにクイズを出題します．投手・外野手で出されるヒントが異なります．
 
 ## 自由会話
 `data/conversation/pattern.json`に，一問一答形式で会話を定義できます．  
