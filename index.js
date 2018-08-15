@@ -46,6 +46,7 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                 type: 'text',
                 text: '血統クイズ！張り切っていきましょー！'
             });
+
             // 年度を選ぶ乱数
             let quiz_year = Math.floor( Math.random() * 4 );
             let true_year = quiz_year + 2013;
@@ -90,11 +91,13 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     }, 6000);
                 }, 6000);
             }, 1000);
+
         } else if (message.text == '戦績クイズ') {
             bot.pushMessage(event.source.groupId, {
                 type: 'text',
                 text: '戦績クイズ！張り切っていきましょー！出題は近5走だよー！'
             });
+
             // 年度を選ぶ乱数
             let quiz_year = Math.floor( Math.random() * 4 );
             let true_year = quiz_year + 2013;
@@ -181,12 +184,12 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     }, wait_times[1]);
                 }, wait_times[0]);
             }, 1000);
+
         } else if (message.text == 'ダムクイズ') {
             bot.pushMessage(event.source.groupId, {
                 type: 'text',
                 text: 'ダムクイズ！張り切っていきましょー！'
             });
-
             const dam_purpose = ['洪水調整，農地防災', '不特定用水，河川維持用水', '灌漑，特定（新規）灌漑用水', '上水道用水', '工業用水道用水', '発電', '消流雪用水', 'レクリエーション'];
             const dam_type = ['アーチダム', 'バットレスダム', 'アースダム', 'アスファルトフェイシングダム', 'アスファルトコアダム', 'フローティングゲートダム', '重力式コンクリートダム', '重力式アーチダム', '重力式コンクリートダム・フィルダム複合ダム', '中空重力式コンクリートダム', 'マルティプルアーチダム', 'ロックフィルダム', '台形CSGダム'];
 
@@ -260,76 +263,8 @@ express.post('/webhook', line.middleware(line_config), (req, res, next) => {
                 text: "選手クイズ！張り切っていきましょー！"
             });
 
-
             // 選手を選ぶ乱数
             var random = Math.floor( Math.random() * baseball.length);
-
-            // ヒントを提出
-            setTimeout(() => {
-                bot.pushMessage(event.source.groupId, {
-                    type: "text",
-                    text: "投打：" + baseball[random][3].toda
-                });
-                setTimeout(() => {
-                    bot.pushMessage(event.source.groupId, {
-                    type: "text",
-                    text: "身長体重：" + baseball[random][4].height_weight
-                    });
-                    setTimeout(() => {
-                        bot.pushMessage(event.source.groupId, {
-                        type: "text",
-                        text: "生年月日：" + baseball[random][5].born
-                        });
-                        setTimeout(() => {
-                            bot.pushMessage(event.source.groupId, {
-                            type: "text",
-                            text: "ポジション：" + baseball[random][2].position
-                            });
-                            setTimeout(() => {
-                                bot.pushMessage(event.source.groupId, {
-                                type: "text",
-                                text: "ドラフト：" + baseball[random][7].draft
-                                });
-                                setTimeout(() => {
-                                    bot.pushMessage(event.source.groupId, {
-                                    type: "text",
-                                    text: "経歴：" + baseball[random][6].career
-                                    });
-                                    setTimeout(() => {
-                                        bot.pushMessage(event.source.groupId, {
-                                        type: "text",
-                                        text: "所属チーム：" + baseball[random][0].team
-                                        });
-                                        setTimeout(() => {
-                                            bot.pushMessage(event.source.groupId, {
-                                            type: "text",
-                                            text: "正解は" + baseball[random][1].name + "選手でした〜"
-                                            });
-                                        }, 10000);
-                                    }, 6000);
-                                }, 6000);
-                            }, 6000);
-                        }, 6000);
-                    }, 6000);
-                }, 6000);
-            }, 1000);
-
-        } else if (message.text == '中田翔クイズ') {
-            bot.pushMessage(event.source.groupId, {
-                type: "text",
-                text: "中田翔クイズ！張り切っていきましょー！"
-            });
-
-            // 選手を選ぶ乱数
-
-            while (true) {
-                var random = Math.floor( Math.random() * baseball.length);
-
-                // 中田翔を選択
-                if (baseball[random][1].name == "中田 翔") {
-                    break;
-                };
-            };
 
             // ヒントを提出
             setTimeout(() => {
