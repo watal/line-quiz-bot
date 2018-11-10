@@ -34,7 +34,7 @@ xmlファイルを[xmltojson](https://github.com/watal/xmltojson)でjson形式�
 ```
 [
     [
-        "0",
+        0,
         "こんにちは",
         "こんにちはー"
     ]
